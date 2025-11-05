@@ -4,6 +4,12 @@
 # ======================================================
 echo "Initializing Living Intelligence Workflow..."
 
+echo "Checking for compressed datasets..."
+if ls data/*.zip 1> /dev/null 2>&1; then
+    echo "Extracting zip files..."
+    for f in data/*.zip; do
+        unzip -o "$f" -d data/
+    done
 echo "Step 1: Loading and Normalizing Data"
 jupyter nbconvert --to notebook --execute 01-load_data.ipynb
 
